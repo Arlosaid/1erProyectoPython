@@ -1,49 +1,53 @@
-from math import prod
 from os import remove
-from pickle import APPEND
 
 
-almacen = []
-
-total = 0
-
-print(""""--------------------------------------------------------
-                Bienvenidos a mi tienda
- --------------------------------------------------------
-                        Menu
-""")
-
-while True:
-    print("""
-    1. Añadir producto al almacen
-    2. Retirar producto de almacen
-    3. Ver almacen
-    4. Añadir producto al carrito
-    5. Retirar producto del carrito
-    6. Cobrar
-    7. Salir
-    """)
-    eleccion = input("Quiero la opcion: ")
-
-    if eleccion == "1":
-        producto = input ("Que producto desea agregar: ")
-        if producto in almacen:
-            print("Este produto ya se encuentra en el almacen")
-        else:
-            almacen.append(producto)
-    elif eleccion == "2":
-        producto = input ("Que producto desea eliminar: ")
-        if producto not in almacen:
-            print("Este producto no esta en el almacen")
-        else: 
-            almacen.remove(producto)
-    elif eleccion == "3":
-        for lista in almacen:
-            print(lista)
-    elif eleccion == "7":
-        break
-    else:
-        print("No se elijio una opcion disponible")
-        print()
+almacen = ["Cafe","Leche","Huevos","Cereal","Tortillas","Jabon"]
+precio = [15,20,5,28,10,18]  
+carrito = {}      
             
+print("""
+--------------------------------------
+      Bienvenidos a mi tienda
+--------------------------------------      
+""")
+print("Menu \n\n 1.Ver almacen \n 2.Agregar prodcuto al almacen \n 3.Eliminar producto del almacen \n 4.Salir")
+
+menu_principal = int(input("Ingrece su opcion ->"))
+
+while menu_principal != 0:
    
+    if menu_principal == 1:
+        for inventario, costo in zip(almacen,precio):
+            print("\n",inventario," - ",costo) 
+
+    elif menu_principal == 2:
+            
+            almacen.append(input("Agregue producto: ").capitalize())  
+            precio.append(int(input("Agregue el precio: ")))
+    
+    elif menu_principal == 3:
+            eliminar = input("Que producto desea eliminar: ").capitalize()
+            for i in range(len(almacen)-1):
+                if almacen[i] == eliminar:
+                    almacen.pop(i)
+                    precio.pop(i)
+            print("Se elimino el producto")   
+    
+    
+        
+
+    elif menu_principal == 4:
+         break        
+   
+    else:
+        print("Elija una opcion valida en el menu")    
+    
+    print("""
+    --------------------------------------
+      Bienvenidos a mi tienda
+    --------------------------------------      
+    """)
+    print("Menu \n\n 1.Ver almacen \n 2.Agregar producto al almacen \n 3.Eliminar producto del almacen \n 4.Salir")
+
+    menu_principal = int(input("Ingrece su opcion ->"))      
+    
