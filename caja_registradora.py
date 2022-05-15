@@ -1,9 +1,6 @@
-from os import remove
-
-
 almacen = ["Cafe","Leche","Huevos","Cereal","Tortillas","Jabon"]
 precio = [15,20,5,28,10,18]  
-carrito = {}      
+      
             
 print("""
 --------------------------------------
@@ -14,7 +11,7 @@ print("Menu \n\n 1.Ver almacen \n 2.Agregar prodcuto al almacen \n 3.Eliminar pr
 
 menu_principal = int(input("Ingrece su opcion ->"))
 
-while menu_principal != 0:
+while menu_principal != 0 :
    
     if menu_principal == 1:
         for inventario, costo in zip(almacen,precio):
@@ -27,17 +24,18 @@ while menu_principal != 0:
     
     elif menu_principal == 3:
             eliminar = input("Que producto desea eliminar: ").capitalize()
-            for i in range(len(almacen)-1):
+            for i in range(len(almacen)-1,-1,-1):
                 if almacen[i] == eliminar:
                     almacen.pop(i)
                     precio.pop(i)
-            print("Se elimino el producto")   
+            print("\nSe elimino el producto\n")   
     
     
         
 
     elif menu_principal == 4:
-         break        
+        print("Gracias por usar este sistema")
+        break        
    
     else:
         print("Elija una opcion valida en el menu")    
