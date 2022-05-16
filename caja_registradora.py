@@ -18,17 +18,25 @@ while menu_principal != 0 :
             print("\n",inventario," - ",costo) 
 
     elif menu_principal == 2:
-            
-            almacen.append(input("Agregue producto: ").capitalize())  
-            precio.append(int(input("Agregue el precio: ")))
+        producto = input("Agregue producto: ").capitalize()
+        if producto in almacen:
+                print("\nEste producto ya esta en el almacen")
+        else:
+            costo = int(input("Agregue el precio: "))
+            almacen.append(producto) 
+            precio.append(costo)
     
     elif menu_principal == 3:
+            
             eliminar = input("Que producto desea eliminar: ").capitalize()
-            for i in range(len(almacen)-1,-1,-1):
-                if almacen[i] == eliminar:
-                    almacen.pop(i)
-                    precio.pop(i)
-            print("\nSe elimino el producto\n")   
+            if eliminar not in almacen:
+                print("\nEste producto no se encuentra en el almacen")
+            else:
+                for i in range(len(almacen)-1,-1,-1):
+                    if almacen[i] == eliminar:
+                     almacen.pop(i)
+                     precio.pop(i)
+                     print("\nSe elimino el producto\n")   
     
     
         
