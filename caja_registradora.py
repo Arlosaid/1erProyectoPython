@@ -1,4 +1,4 @@
-almacen = {"1": ["Pan",12],"2": ["Leche",25]}
+almacen = {"1": ["Pan",12],"2": ["Leche",25],"3": ["Agua",26],"4": ["Manzana",5],"5": ["Naranja",7]}
 carrito = []
 total = []
     
@@ -6,25 +6,25 @@ total = []
 #---------Seccion del vendedor-----------
 def agregar_producto():
     global almacen
-    id = (input("Ingrese el ID del producto que desea registrar: "))
+    id = (input("Ingrese el ID del producto que desea registrar:-->"))
     
     if id  in almacen:
         print("Ese ID ya esta registrado")
     
     else:
-        nombre_producto = (input("Ingrese el nombre del producto: ").capitalize())
+        nombre_producto = (input("Ingrese el nombre del producto:-->").capitalize())
         precio = int(input("Ingrese el precio: "))
         almacen[id] = nombre_producto,precio
         print("Se registro exitosamente el producto")
    
-    respuesta = input("Desea agregar otro producto al almacen? si/no").lower()
+    respuesta = input("Desea agregar otro producto al almacen? si/no -->").lower()
     if respuesta == "si":
         agregar_producto()
 
 
-def delete(id):
+def borrar(id):
     global almacen
-    id = (input("Ingrese el ID del producto que desa eliminar: "))
+    id = (input("Ingrese el ID del producto que desa eliminar:-->"))
     if id  in almacen:
        print("\nSe elimino el producto del almacen\n")
        del(almacen[id])
@@ -32,13 +32,14 @@ def delete(id):
     else:         
         print("\nEse producto no se encuentra en almacen\n")
     
-    respuesta = input("Desea quitar otro producto al almacen? si/no").lower()
+    respuesta = input("Desea quitar otro producto al almacen? si/no-->").lower()
     if respuesta == "si":
-        delete(id)       
+        borrar(id)       
 
 
 def listar():
     global almacen
+    print("\n-------------Productos en el inventario-------------\n")
     for producto in almacen:
         print(
     """ID: {}
@@ -49,7 +50,7 @@ def listar():
 
 #---------Seccion del comprador-----------
 def vendedor ():
-    comprar = input("\nAgregue el ID del producto que desea comprar\n ")
+    comprar = input("\nAgregue el ID del producto que desea comprar-->\n ")
 
     if comprar in almacen:
         carrito.append(comprar)
@@ -58,13 +59,13 @@ def vendedor ():
     else:
         print("No contamos con este producto, lo siento\n")
             
-    comp_respuesta = input("Desea comprar otro producto? si/no ")
+    comp_respuesta = input("Desea comprar otro producto? si/no-->")
     if comp_respuesta == "si":
         vendedor()
 
 
 def eliminar_prod ():
-    eliminar = input("\nQue producto desea eliminar:\n ")
+    eliminar = input("\nQue producto desea eliminar:-->\n")
     
     if eliminar in carrito:
         for prod_elim in range(len(carrito)-1,-1,-1):
@@ -77,7 +78,7 @@ def eliminar_prod ():
     else:
         print("\nNo cuenta con este producto en su carrito\n")
     
-    elim_respuesta = ("Desea eliminar otro producto? si/no ")
+    elim_respuesta = ("Desea eliminar otro producto? si/no-->")
     if elim_respuesta == "si":
         eliminar_prod()
 
@@ -87,7 +88,7 @@ def pagar ():
         total.append(almacen[items][1])
         total_pagar = sum(total)
     print("\nTotal a pagar", total_pagar," pesos\n")
-
+    
         
                       
 
@@ -109,7 +110,7 @@ while True:
         if opcion == 1:
             agregar_producto()
         elif opcion == 2:
-            delete(id) 
+            borrar(id) 
         elif opcion == 3: 
             listar()   
         elif opcion == 4:
